@@ -60,6 +60,18 @@ jobs:
         df -hT $PWD
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+        
+    - name: Revise mt7621_xiaomi_mi-router-4a-3g-v2.dtsi
+      run: |
+        cd openwrt/target/linux/ramips/dts
+        wget https://raw.githubusercontent.com/Plutonium141/XiaoMi-R4A-Gigabit-Actions-OpenWrt/main/mt7621_xiaomi_mi-router-4a-3g-v2.dtsi -O mt7621_xiaomi_mi-router-4a-3g-v2.dtsi
+        cd ../../../../../
+        
+    - name: Revise mt7621.mk
+      run: |
+        cd openwrt/target/linux/ramips/image
+        wget https://raw.githubusercontent.com/Plutonium141/XiaoMi-R4A-Gigabit-Actions-OpenWrt/main/mt7621.mk -O mt7621.mk
+        cd ../../../../../
 
     - name: Load custom feeds
       run: |
